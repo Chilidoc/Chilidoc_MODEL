@@ -8,19 +8,7 @@ from PIL import Image
 
 app = Flask(__name__)
 
-# Function to download the model from a URL and save it locally
-def download_model(model_url, model_path):
-    response = requests.get(model_url)
-    with open(model_path, 'wb') as file:
-        file.write(response.content)
-
-# URL of your model in cloud storage
-model_url = 'https://storage.googleapis.com/chilidoc-cloud-storage/model/best_model.h5'
-model_path = 'best_model.h5'
-
-# Download and load the pre-trained model
-download_model(model_url, model_path)
-model = load_model(model_path)
+model = load_model('best_model.h5')
 
 # Function to preprocess the image
 def preprocess_image(img_path, target_size=(150, 150)):
